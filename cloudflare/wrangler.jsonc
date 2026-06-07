@@ -1,0 +1,30 @@
+{
+  "name": "biome",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-06",
+  "observability": {
+    "enabled": true
+  },
+  "secrets": {
+    "required": ["PRODUCER_SECRET", "INFLUXDB_TOKEN"]
+  },
+  "vars": {
+    "INFLUXDB_URL": "https://eu-central-1-1.aws.cloud2.influxdata.com",
+    "INFLUXDB_BUCKET": "sensor-readings"
+  },
+  "queues": {
+    "consumers": [
+      {
+        "queue": "sensor-reading",
+        "max_batch_size": 10,
+        "max_batch_timeout": 60
+      }
+    ],
+    "producers": [
+      {
+        "binding": "SENSOR_READING_QUEUE",
+        "queue": "sensor-reading"
+      }
+    ]
+  }
+}
