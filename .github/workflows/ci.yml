@@ -14,6 +14,8 @@ jobs:
         with:
           version: 11
           cache: true
+          cache_dependency_path: |
+            cloudflare/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm tsc
       - run: pnpm fmt:check
